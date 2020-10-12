@@ -1,0 +1,29 @@
+subprojects {
+    afterEvaluate { project ->
+        pluginManager.withPlugin("com.android.library") {
+
+            android {
+                compileSdkVersion Values.androidCompileSDK
+                buildToolsVersion Values.androidBuildTools
+
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+
+                defaultConfig {
+                    minSdkVersion Values.androidMinSDK
+                    targetSdkVersion Values.androidTargetSDK
+                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                }
+            }
+
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib:${Values.kotlin}"
+                testImplementation 'junit:junit:4.13'
+                androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+                androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+            }
+        }
+    }
+}
