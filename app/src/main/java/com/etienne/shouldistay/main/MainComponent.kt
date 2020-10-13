@@ -6,6 +6,7 @@ import com.etienne.shouldistay.main.locationerror.LocationErrorViewComponent
 import com.etienne.shouldistay.main.presentation.LocationPermissionResolver
 import com.etienne.shouldistay.main.presentation.MainActivity
 import com.etienne.shouldistay.main.presentation.MainCoordinator
+import com.etienne.shouldistay.main.weather.WeatherViewComponent
 import dagger.Provides
 import dagger.Subcomponent
 import javax.inject.Scope
@@ -19,7 +20,8 @@ interface MainComponent {
 
     @dagger.Module(
         subcomponents = [
-            LocationErrorViewComponent::class
+            LocationErrorViewComponent::class,
+            WeatherViewComponent::class
         ]
     )
     class Module(
@@ -31,9 +33,16 @@ interface MainComponent {
         @MainActivityScope
         internal fun provideCoordinator(
             component: MainComponent,
-            locationErrorViewBuilder: LocationErrorViewComponent.Builder
+            locationErrorViewBuilder: LocationErrorViewComponent.Builder,
+            weatherViewBuilder: WeatherViewComponent.Builder
         ): MainCoordinator =
-            MainCoordinator(parent, component, locationErrorViewBuilder, locationPermissionResolver)
+            MainCoordinator(
+                parent,
+                component,
+                locationErrorViewBuilder,
+                weatherViewBuilder,
+                locationPermissionResolver
+            )
     }
 }
 

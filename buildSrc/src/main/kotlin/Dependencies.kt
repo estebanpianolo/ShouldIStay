@@ -31,7 +31,10 @@ private object DependencyVersions {
         const val jsonConverter = "2.9.0"
     }
 
-    const val gson = "2.8.6"
+    object Gson {
+        const val core = "2.8.6"
+        const val extras = "2.8.5"
+    }
 
     const val playServices = "17.1.0"
 }
@@ -74,10 +77,14 @@ object Dependencies {
             "com.squareup.retrofit2:converter-gson:${DependencyVersions.Retrofit.jsonConverter}"
     }
 
-    const val gson = "com.google.code.gson:gson:${DependencyVersions.gson}"
+    object Gson {
+        const val core = "com.google.code.gson:gson:${DependencyVersions.Gson.core}"
+        const val extras = "com.google.code.gson:gson-extras:${DependencyVersions.Gson.extras}"
+    }
 
     object PlayServices {
-        const val location = "com.google.android.gms:play-services-location:${DependencyVersions.playServices}"
+        const val location =
+            "com.google.android.gms:play-services-location:${DependencyVersions.playServices}"
     }
 }
 

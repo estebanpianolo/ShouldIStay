@@ -1,12 +1,8 @@
 package com.etienne.shouldistay.main.presentation
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.etienne.libraries.archi.view.RelaunchingActivity
 import com.etienne.libraries.pratik.tools.requestPermission
 import com.etienne.shouldistay.App
@@ -52,10 +48,11 @@ class MainActivity : RelaunchingActivity(), LocationPermissionResolver {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(!coordinator.onActivityResult(requestCode, resultCode, data)) {
+        if (!coordinator.onActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         if (isFinishing) {

@@ -2,4 +2,8 @@
     <string name="app_name">Should I Stay</string>
     <string name="location_error_title">If you want to know when to go for a short walk, please give me your location permission . !</string>
     <string name="location_error_button_title">Let\'s go !</string>
+    <string name="current_temperature_title">Current Temperature</string>
+    <string name="current_precipitation_title">Current Precipitation</string>
+    <string name="current_temperature_value">%.2f %s</string>
+    <string name="current_precipitation_value">%.2f %s</string>
 </resources>

@@ -6,10 +6,12 @@ import com.etienne.libraries.archi.coordinator.ActivityRequestPermissionsResultH
 import com.etienne.libraries.archi.coordinator.ActivityResultHandler
 import com.etienne.libraries.archi.coordinator.Coordinator
 import com.etienne.libraries.pratik.compat.Optional
+import com.etienne.libraries.pratik.rx.filterByCasting
 import com.etienne.shouldistay.domain.LocationRetriever
 import com.etienne.shouldistay.main.MainComponent
 import com.etienne.shouldistay.main.locationerror.LocationErrorViewComponent
 import com.etienne.shouldistay.main.locationerror.presentation.LocationErrorViewCoordinator
+import com.etienne.shouldistay.main.weather.WeatherViewComponent
 import com.google.android.gms.common.api.ResolvableApiException
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
@@ -18,12 +20,26 @@ class MainCoordinator(
     private val parent: ViewGroup,
     component: MainComponent,
     private val locationErrorViewBuilder: LocationErrorViewComponent.Builder,
+    private val weatherViewBuilder: WeatherViewComponent.Builder,
     private val locationPermissionResolver: LocationPermissionResolver
 ) : Coordinator<MainComponent>(component), ActivityRequestPermissionsResultHandler,
     ActivityResultHandler {
 
     private val disposables = CompositeDisposable()
     override fun start() {
+        weatherViewBuilder.module(
+            WeatherViewComponent.Module(
+                parent,
+                component.locationRetriever.state.filterByCasting(LocationRetriever.State.CurrentLocation::class.java) { it.location }
+            )
+        )
+            .build()
+            .coordinator()
+            .apply {
+                start()
+                this@MainCoordinator.attachCoordinator(this)
+            }
+
         registerForLocationPermissionUpdates()
     }
 
@@ -42,6 +58,9 @@ class MainCoordinator(
     }
 
     private fun handleLocationPermissionSuccess(state: LocationRetriever.State) {
+        if (state is LocationRetriever.State.CurrentLocation) {
+            detachCoordinator(LocationErrorViewCoordinator::class)
+        }
     }
 
     private fun handleLocationPermissionError(throwable: Optional<Throwable>) {

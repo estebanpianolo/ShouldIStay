@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/current_temperature_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_size_triple"
+        android:layout_marginTop="@dimen/default_size_sextuple"
+        android:text="@string/current_temperature_title"
+        android:textColor="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ProgressBar
+        android:id="@+id/current_temperature_progress"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="@dimen/default_size_quadruple"
+        android:layout_height="@dimen/default_size_quadruple"
+        android:layout_marginStart="@dimen/default_size_sextuple"
+        android:layout_marginTop="@dimen/default_size"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/design_default_color_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_temperature_title"
+        />
+
+    <TextView
+        android:id="@+id/current_temperature_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_size_sextuple"
+        android:textColor="@color/design_default_color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/current_temperature_progress"
+        app:layout_constraintBottom_toBottomOf="@id/current_temperature_progress"
+        tool:text="@string/current_temperature_title" />
+
+
+    <TextView
+        android:id="@+id/current_precipitation_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_size_triple"
+        android:layout_marginTop="@dimen/default_size_sextuple"
+        android:text="@string/current_precipitation_title"
+        android:textColor="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_temperature_value" />
+
+    <ProgressBar
+        android:id="@+id/current_precipitation_progress"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="@dimen/default_size_quadruple"
+        android:layout_height="@dimen/default_size_quadruple"
+        android:layout_marginStart="@dimen/default_size_sextuple"
+        android:layout_marginTop="@dimen/default_size"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/design_default_color_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_precipitation_title" />
+
+
+    <TextView
+        android:id="@+id/current_precipitation_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_size_sextuple"
+        android:textColor="@color/design_default_color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/current_precipitation_progress"
+        app:layout_constraintBottom_toBottomOf="@id/current_precipitation_progress"
+        tool:text="@string/current_temperature_title" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

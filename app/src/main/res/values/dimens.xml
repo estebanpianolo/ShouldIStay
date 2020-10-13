@@ -3,4 +3,5 @@
     <dimen name="default_size">8dp</dimen>
     <dimen name="default_size_triple">24dp</dimen>
     <dimen name="default_size_sextuple">48dp</dimen>
+    <dimen name="default_size_quadruple">32dp</dimen>
 </resources>

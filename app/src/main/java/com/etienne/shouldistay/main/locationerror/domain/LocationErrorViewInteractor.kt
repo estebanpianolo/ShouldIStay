@@ -3,7 +3,9 @@ package com.etienne.shouldistay.main.locationerror.domain
 import com.etienne.libraries.archi.nucleus.*
 import com.etienne.shouldistay.domain.LocationUpdater
 
-class LocationErrorViewInteractorImpl(locationUpdater: LocationUpdater) : NucleusInteractorImpl<Unit>(Unit),
+class LocationErrorViewInteractorImpl(locationUpdater: LocationUpdater) : NucleusInteractorImpl<Unit>(
+    Unit
+),
     LocationErrorViewInteractor {
 
     override val reducerConfigurator: NucleusReducerConfigurator<Unit> = {

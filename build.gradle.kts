@@ -16,6 +16,7 @@ allprojects {
   repositories {
     google()
     jcenter()
+    maven { url = uri("https://artifactory.cronapp.io/public-release") }
   }
 }
 

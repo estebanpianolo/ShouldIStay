@@ -1,7 +1,9 @@
 package com.etienne.libraries.network
 
 import com.etienne.libraries.network.interceptors.ErrorInterceptor
+import com.etienne.libraries.network.interceptors.NetworkInterceptor
 import com.google.gson.GsonBuilder
+import com.google.gson.TypeAdapter
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -15,12 +17,25 @@ interface NetworkConnector {
     fun <T> create(service: Class<T>): T
 
     companion object {
-        fun createNewConnector(baseUrl: String): NetworkConnector {
+        fun createNewConnector(
+            baseUrl: String,
+            queryParameter: List<Pair<String, String>>?,
+            typeAdapters: List<Pair<Class<*>, TypeAdapter<*>>>?
+        ): NetworkConnector {
 
-            val converter = GsonConverterFactory.create(GsonBuilder().create())
+            val converter = GsonConverterFactory.create(
+                GsonBuilder().apply {
+                    typeAdapters?.forEach { registerTypeAdapter(it.first, it.second) }
+                }.create()
+            )
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(ErrorInterceptor())
+                .apply {
+                    queryParameter?.let {
+                        addNetworkInterceptor(NetworkInterceptor(queryParameter))
+                    }
+                }
                 .build()
 
             val retrofit = Retrofit.Builder()

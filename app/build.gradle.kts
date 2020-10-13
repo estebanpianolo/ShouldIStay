@@ -72,7 +72,8 @@ dependencies {
   implementation(Dependencies.RxBinding.appCompat)
 
   implementation(Dependencies.Retrofit.retrofit)
-  implementation(Dependencies.gson)
+  implementation(Dependencies.Gson.core)
+  implementation(Dependencies.Gson.extras)
 
   implementation(project(":libraries:archi"))
   implementation(project(":libraries:pratik"))

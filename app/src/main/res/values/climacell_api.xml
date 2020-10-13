@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="clima_cell_key" templateMergeStrategy="preserve" translatable="false">
+        iTXa9MwEF2QkxEHHuGTUZT1McN5U00OL
+    </string>    <string name="clima_cell_url" templateMergeStrategy="preserve" translatable="false">
+        https://api.climacell.co/v3/weather/
+    </string>
+
+</resources>
