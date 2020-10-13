@@ -2,6 +2,11 @@ package com.etienne.shouldistay
 
 import android.app.Application
 import android.content.Context
+import com.etienne.shouldistay.data.PlayServicesLocationRepository
+import com.etienne.shouldistay.domain.LocationRepository
+import com.etienne.shouldistay.domain.LocationRetriever
+import com.etienne.shouldistay.domain.LocationRetrieverImpl
+import com.etienne.shouldistay.domain.LocationUpdater
 import dagger.Module
 import dagger.Provides
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -38,6 +43,22 @@ class AppModule(application: Application) {
     @Provides
     @ApplicationScope
     fun provideAppInjector(appComponent: AppComponent): AppInjector = AppInjectorImpl(appComponent)
+
+    @Provides
+    @ApplicationScope
+    fun provideLocationRetriever(locationRepository: LocationRepository): LocationRetriever =
+        LocationRetrieverImpl(locationRepository)
+
+    @Provides
+    @ApplicationScope
+    fun provideLocationUpdater(locationRetriever: LocationRetriever): LocationUpdater =
+        locationRetriever
+
+    @Provides
+    @ApplicationScope
+    fun provideLocationRepository(): LocationRepository =
+        PlayServicesLocationRepository(context)
+
 }
 
 @Scope

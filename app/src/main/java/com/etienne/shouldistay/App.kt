@@ -2,7 +2,6 @@ package com.etienne.shouldistay
 
 import com.etienne.libraries.archi.view.Application
 import com.etienne.shouldistay.main.presentation.MainActivity
-
 import dagger.android.DispatchingAndroidInjector
 import javax.inject.Inject
 

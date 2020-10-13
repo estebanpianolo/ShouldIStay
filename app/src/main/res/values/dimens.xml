@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_size">8dp</dimen>
+    <dimen name="default_size_triple">24dp</dimen>
+    <dimen name="default_size_sextuple">48dp</dimen>
+</resources>

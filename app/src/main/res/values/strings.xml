@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">ShouldIStay</string>
+    <string name="app_name">Should I Stay</string>
+    <string name="location_error_title">If you want to know when to go for a short walk, please give me your location permission . !</string>
+    <string name="location_error_button_title">Let\'s go !</string>
 </resources>

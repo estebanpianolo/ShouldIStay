@@ -32,6 +32,8 @@ private object DependencyVersions {
     }
 
     const val gson = "2.8.6"
+
+    const val playServices = "17.1.0"
 }
 
 object Dependencies {
@@ -74,5 +76,8 @@ object Dependencies {
 
     const val gson = "com.google.code.gson:gson:${DependencyVersions.gson}"
 
+    object PlayServices {
+        const val location = "com.google.android.gms:play-services-location:${DependencyVersions.playServices}"
+    }
 }
 

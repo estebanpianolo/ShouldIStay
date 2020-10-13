@@ -50,6 +50,30 @@ abstract class Coordinator<C>(protected val component: C) {
     }
 
     /**
+     * This method dispatches onRequestPermissionsResult to its last child to know if it handles the event.
+     * If not, the method checks if this coordinator handles the event.
+     * If not, it returns False and the parent coordinator will try to handle it.
+     *
+     * @return Boolean : True if this method handled the event otherwise False
+     */
+    fun requestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ): Boolean {
+        val activeChild =
+            childrenStack.peek()?.requestPermissionsResult(requestCode, permissions, grantResults)
+                ?: false
+        if (!activeChild)
+            return ((this is ActivityRequestPermissionsResultHandler) && onRequestPermissionsResult(
+                requestCode,
+                permissions,
+                grantResults
+            ))
+        return activeChild
+    }
+
+    /**
      * Will release this coordinator and recursively all the children attached to this coordinator
      */
     protected fun release() {
@@ -99,7 +123,6 @@ abstract class Coordinator<C>(protected val component: C) {
         coordinator.attachCoordinator(this)
     }
 
-
 }
 
 /**
@@ -122,11 +145,28 @@ interface BackPressedListener {
  */
 interface ActivityResultHandler {
     /**
-     * This method must return True whe this method did something or False if nothing
+     * This method must return True when this method did something or False if nothing
      * has to be done by the coordinator (basically it means all children coordinators are already detached)
      *
      * @return True if this method handled the back event otherwise False
      */
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean
+}
+
+/**
+ * This interface must be implemented by coordinator that wants to handle onRequestPermissionsResult.
+ */
+interface ActivityRequestPermissionsResultHandler {
+    /**
+     * This method must return True when this method did something or False if nothing
+     * has to be done by the coordinator (basically it means all children coordinators are already detached)
+     *
+     * @return True if this method handled the back event otherwise False
+     */
+    fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ): Boolean
 }
 

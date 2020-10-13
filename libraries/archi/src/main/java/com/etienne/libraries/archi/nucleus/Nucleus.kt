@@ -26,7 +26,7 @@ class Nucleus<S>(
         reducer: NucleusReducer<S>,
         hookReducer: NucleusReducerHook<S> = { _, _, _, _, _ -> },
         autoStart: Boolean = true
-    ) : this(Single.just(initialState), viewActions, reducer, hookReducer)
+    ) : this(Single.just(initialState), viewActions, reducer, hookReducer, autoStart)
 
     constructor(
         initialState: Observable<S>,

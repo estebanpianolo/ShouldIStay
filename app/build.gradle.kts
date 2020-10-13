@@ -58,6 +58,8 @@ dependencies {
   implementation(Dependencies.material)
   implementation(Dependencies.constraintLayout)
 
+  implementation(Dependencies.PlayServices.location)
+
   implementation(Dependencies.Rx.java)
   implementation(Dependencies.Rx.android)
   implementation(Dependencies.Rx.kotlin)
