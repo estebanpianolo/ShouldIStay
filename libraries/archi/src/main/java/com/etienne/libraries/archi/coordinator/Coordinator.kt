@@ -76,7 +76,7 @@ abstract class Coordinator<C>(protected val component: C) {
     /**
      * Will release this coordinator and recursively all the children attached to this coordinator
      */
-    protected fun release() {
+    fun release() {
         childrenStack.forEach { it.release() }
         childrenStack.clear()
         onRelease()

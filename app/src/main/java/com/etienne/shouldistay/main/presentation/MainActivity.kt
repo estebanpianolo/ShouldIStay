@@ -56,7 +56,7 @@ class MainActivity : RelaunchingActivity(), LocationPermissionResolver {
     override fun onDestroy() {
         super.onDestroy()
         if (isFinishing) {
-            coordinator.onRelease()
+            coordinator.release()
             appInjector.releaseMainComponent()
         }
     }

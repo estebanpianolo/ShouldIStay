@@ -19,7 +19,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import javax.inject.Scope
 
-@LocationErrorViewScope
+@WeatherViewScope
 @Subcomponent(modules = [WeatherViewComponent.Module::class])
 interface WeatherViewComponent {
 
@@ -37,14 +37,14 @@ interface WeatherViewComponent {
     class Module(private val container: ViewGroup, private val location: Observable<Location>) {
 
         @Provides
-        @LocationErrorViewScope
+        @WeatherViewScope
         internal fun provideCoordinator(
             component: WeatherViewComponent,
         ): WeatherViewCoordinator = WeatherViewCoordinator(component)
 
         @Provides
-        @LocationErrorViewScope
-        internal fun provideLocationErrorInteractor(
+        @WeatherViewScope
+        internal fun provideWeatherInteractor(
             weatherRepository: WeatherRepository,
             @IOScheduler ioScheduler: Scheduler,
             @ComputationScheduler computeScheduler: Scheduler
@@ -52,22 +52,22 @@ interface WeatherViewComponent {
             WeatherViewInteractorImpl(location, weatherRepository, ioScheduler, computeScheduler)
 
         @Provides
-        @LocationErrorViewScope
+        @WeatherViewScope
         internal fun provideInteractor(interactor: WeatherViewInteractorImpl): WeatherViewInteractor =
             interactor
 
         @Provides
-        @LocationErrorViewScope
+        @WeatherViewScope
         internal fun provideViewHolder(interactor: WeatherViewInteractor): WeatherViewHolder =
             WeatherViewHolder(container, interactor)
 
         @Provides
-        @LocationErrorViewScope
+        @WeatherViewScope
         internal fun provideWeatherApi(networkConnector: NetworkConnector): ClimaCellAPI =
             networkConnector.create(ClimaCellAPI::class.java)
 
         @Provides
-        @LocationErrorViewScope
+        @WeatherViewScope
         internal fun provideWeatherRepository(api: ClimaCellAPI): WeatherRepository =
             ClimaCellWeatherRepository(api)
 

@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
+import java.util.*
 
 class WeatherViewInteractorImpl(
     location: Observable<Location>,
@@ -33,11 +34,10 @@ class WeatherViewInteractorImpl(
                     ComputeResultsCommand(it.weather, computeScheduler)
         }
         WeatherViewInteractor.UpdateResults::class changesState {
-            WeatherViewInteractor.State.Result(it.temperature, it.precipitation)
+            WeatherViewInteractor.State.Result(it.temperature, it.precipitation, it.nextTimeSlot)
         }
     }
-
-    override fun clear() {
+        override fun clear() {
         super.clear()
         disposables.clear()
     }
@@ -52,7 +52,8 @@ interface WeatherViewInteractor : NucleusInteractor<WeatherViewInteractor.State>
         object ComputingResults : State()
         data class Result(
             val temperature: Temperature,
-            val precipitation: Precipitation
+            val precipitation: Precipitation,
+            val nextTimeSlot : TimeSlot
         ) : State()
     }
 
@@ -61,6 +62,19 @@ interface WeatherViewInteractor : NucleusInteractor<WeatherViewInteractor.State>
     data class ComputeResults(val location: Location, val weather: List<Weather>) : Action
     data class UpdateResults(
         val temperature: Temperature,
-        val precipitation: Precipitation
+        val precipitation: Precipitation,
+        val nextTimeSlot : TimeSlot
     ) : Action
+
+    sealed class TimeSlot {
+        object Now : TimeSlot()
+        data class In(val minutes: Int) : TimeSlot()
+        data class At(val date: Date) : TimeSlot()
+        object Never : TimeSlot()
+    }
+
+
+    companion object {
+        const val timeSlotSpan = 15 //in minutes
+    }
 }

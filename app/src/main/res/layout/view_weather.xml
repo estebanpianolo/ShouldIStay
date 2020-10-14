@@ -7,79 +7,72 @@
 
     <TextView
         android:id="@+id/current_temperature_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_size_triple"
-        android:layout_marginTop="@dimen/default_size_sextuple"
+        style="@style/FieldTitle"
         android:text="@string/current_temperature_title"
-        android:textColor="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <ProgressBar
         android:id="@+id/current_temperature_progress"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
-        android:layout_width="@dimen/default_size_quadruple"
-        android:layout_height="@dimen/default_size_quadruple"
-        android:layout_marginStart="@dimen/default_size_sextuple"
-        android:layout_marginTop="@dimen/default_size"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/design_default_color_primary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/current_temperature_title"
-        />
+        style="@style/FieldProgress"
+        app:layout_constraintBottom_toBottomOf="@id/current_temperature_title"
+        app:layout_constraintStart_toEndOf="@id/current_temperature_title"
+        app:layout_constraintTop_toTopOf="@id/current_temperature_title" />
 
     <TextView
         android:id="@+id/current_temperature_value"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_size_sextuple"
-        android:textColor="@color/design_default_color_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/current_temperature_progress"
-        app:layout_constraintBottom_toBottomOf="@id/current_temperature_progress"
+        style="@style/FieldValue"
+        app:layout_constraintBottom_toBottomOf="@id/current_temperature_title"
+        app:layout_constraintStart_toStartOf="@id/current_temperature_progress"
+        app:layout_constraintTop_toTopOf="@id/current_temperature_title"
         tool:text="@string/current_temperature_title" />
 
 
     <TextView
         android:id="@+id/current_precipitation_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_size_triple"
-        android:layout_marginTop="@dimen/default_size_sextuple"
+        style="@style/FieldTitle"
         android:text="@string/current_precipitation_title"
-        android:textColor="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/current_temperature_value" />
+        app:layout_constraintTop_toBottomOf="@+id/current_temperature_title" />
 
     <ProgressBar
         android:id="@+id/current_precipitation_progress"
-        style="@style/Base.Widget.AppCompat.ProgressBar"
-        android:layout_width="@dimen/default_size_quadruple"
-        android:layout_height="@dimen/default_size_quadruple"
-        android:layout_marginStart="@dimen/default_size_sextuple"
-        android:layout_marginTop="@dimen/default_size"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/design_default_color_primary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/current_precipitation_title" />
+        style="@style/FieldProgress"
+        app:layout_constraintBottom_toBottomOf="@id/current_precipitation_title"
+        app:layout_constraintStart_toEndOf="@id/current_precipitation_title"
+        app:layout_constraintTop_toTopOf="@id/current_precipitation_title" />
 
 
     <TextView
         android:id="@+id/current_precipitation_value"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_size_sextuple"
-        android:textColor="@color/design_default_color_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/current_precipitation_progress"
-        app:layout_constraintBottom_toBottomOf="@id/current_precipitation_progress"
+        style="@style/FieldValue"
+        app:layout_constraintBottom_toBottomOf="@id/current_precipitation_title"
+        app:layout_constraintStart_toStartOf="@id/current_precipitation_progress"
+        app:layout_constraintTop_toTopOf="@id/current_precipitation_title"
         tool:text="@string/current_temperature_title" />
 
+    <TextView
+        android:id="@+id/time_slot_title"
+        style="@style/FieldTitle"
+        android:text="@string/time_slot_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/current_precipitation_title" />
+
+    <ProgressBar
+        android:id="@+id/time_slot_progress"
+        style="@style/FieldProgress"
+        app:layout_constraintBottom_toBottomOf="@id/time_slot_title"
+        app:layout_constraintStart_toEndOf="@id/time_slot_title"
+        app:layout_constraintTop_toTopOf="@id/time_slot_title" />
+
+
+    <TextView
+        android:id="@+id/time_slot_value"
+        app:layout_constraintBottom_toBottomOf="@id/time_slot_title"
+        app:layout_constraintStart_toStartOf="@id/time_slot_progress"
+        app:layout_constraintTop_toTopOf="@id/time_slot_title"
+        tool:text="@string/time_slot_title"
+        style="@style/FieldValue"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
